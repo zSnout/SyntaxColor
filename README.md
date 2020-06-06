@@ -7,14 +7,14 @@ Having trouble with syntax highlighting? Need a simple, yet powerful parser? Wel
 
 The SyntaxColor parser requires that you pass rules for it to color. A rule is an object that contains properties that help the parser decide what to color.
 
-Each rule must contain the `regex` and `token` properties, and may contain `case` and/or `next` properties.
+Each rule must contain the `regex` and `token` properties, and may contain `next` and/or `caseSensitive` properties.
 
 #### `regex`
 The `regex` property contains either a regular expression to match, or a regular expression in the form of a string.
 For example, `/Hello world/` and `"Hello world"` are both valid values, but `23` is not.
 Any flags except `i` on the regular expression will be removed.
 
-#### `token`
+#### `token` (aliases: `tokenList`, `tokenArray`)
 The `token` property can contain either a string, an array, or a function.
 
 ##### String
@@ -41,4 +41,12 @@ For example, in
 If the `token` property is a function, SyntaxColor will evaluate the function, passing the matched result in the way the browser returned it.
 SyntaxColor will then take the returned result and evaluate it in the manner above.
 
-#### `next`
+#### `next` (alias: `nextState`)
+The `next` property is **NOT REQUIRED**, and defaults to the current state.
+It specifies the next state for the parser to go to. More on states later.
+
+#### `caseSensitive`
+The `caseSensitive` property is **NOT REQUIRED**, and defaults to `true`.
+It specifies whether the regular expression should be matched as case-sensitive.
+
+> **WARNING:** If the `i` flag is set on the regular expression, it overrides the `caseSensitive` option.
