@@ -53,6 +53,22 @@ Then, as the parser evaluates your rules, if it encounters a match and the `next
 
 ---
 
+## Rule
+
+A rule is a JavaScript object containing the `regex`, `token`, `next?`, and `caseSensitive?` properties.
+
+Here's the format for a rule:
+``` javascript
+{
+    regex: RegExp or String,
+    token: String, Array, or Function
+    [,next: String]
+    [,caseSensitive: Boolean]
+}
+```
+
+---
+
 ## Rule Set
 
 A rule set is a JavaScript array containing several rules.
@@ -70,7 +86,7 @@ Here's the format for a rule set:
 
 ## Complete Rule Set
 
-A complete rule set contains several states and their rule sets.
+A complete rule set is a JavaScript object containing several states and their rule sets.
 
 Here's the format for a complete rule set:
 ``` javascript
