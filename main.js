@@ -35,9 +35,13 @@ window.parseRules = function(rules) {
 				continue;
 			}
 			
-			if (thisRules[j].token === null && thisRules[j].tokenList !== undefined) {
+			if ((thisRules[j].token === null || thisRules[j].token === undefined) && thisRules[j].tokenList !== undefined) {
 				rules[thisState][j].token = thisRules[j].tokenList;
 			}
+			if ((thisRules[j].token === null || thisRules[j].token === undefined) && thisRules[j].tokenArray !== undefined) {
+				rules[thisState][j].token = thisRules[j].tokenArray;
+			}
+			
 			if (thisRules[j].next === null && thisRules[j].nextState !== undefined) {
 				rules[thisState][j].next = thisRules[j].nextState;
 			}
