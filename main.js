@@ -76,12 +76,12 @@ window.addClasses = function(match,token,prefix) {
 	} else if (Array.isArray(token)) {
 		var text = "";
 		for (var j = 1;j <= token.length;j++) {
-			text += window.addClasses(match[j],token[j - 1]);
+			text += window.addClasses(match[j],token[j - 1],prefix);
 		}
 		
 		return text;
 	} else if (typeof token == "function") {
-		return window.addClasses(match,token());
+		return window.addClasses(match,token(match),prefix);
 	}
 };
 
@@ -104,6 +104,22 @@ window.compress = function(html) {
 		
 		return start + match[3] + chars.join("") + "</span>";
 	});
+};
+
+window.changeSpaces = function(html) {
+    var matcher = / {2,}/g;
+    
+    return html.replace(matcher,function(m) {
+        if (typeof m == "object") {
+            m = m[0];
+        }
+        
+        var txt = "&zwnj;";
+        for (var i = 0;i < m.length;i++) {
+            txt += "&nbsp;&zwnj;";
+        }
+        return txt;
+    });
 };
 
 window.highlightLine = function(line,allRules,state,prefix) {
@@ -168,5 +184,5 @@ window.highlight = function(text,rules,prefix) {
 		state = line.state;
 	}
 	
-	return window.compress(html.join("<br>"));
+	return window.changeSpaces(window.compress(html.join("<br>")));
 };
