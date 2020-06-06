@@ -22,16 +22,7 @@ If the `token` property is a string, the result matched by `regex` will be wrapp
 To add several classes, use class names seperated by `.`. Note that classes will have a prefix applied to them, so `abc` becomes `sc_abc`.
 
 ##### Array
-If the `token` property is an array, each group in the `regex` will have the classes specified in the array added to it in order.
-
-For example, in
-```javascript
-{
-  regex: /(hello)( world)/`,
-  token: ["word","long"]
-}
-```
-, the text `"I said hello world."` would output `"I said <span class='zsnout_word'>hello</span><span class='zsnout_long'> world</span>"`.
+If the `token` property is an array, each group in the `regex` will have the classes specified in the array added to them in order.
 
 > **WARNING:** Make sure that you have as many groups in your `regex` as there are elements in the list, otherwise you may get unexpected results.
 
@@ -44,9 +35,48 @@ SyntaxColor will then take the returned result and evaluate it in the manner abo
 #### `next` (alias: `nextState`)
 The `next` property is **NOT REQUIRED**, and defaults to the current state.
 It specifies the next state for the parser to go to. More on states later.
-
 #### `caseSensitive`
 The `caseSensitive` property is **NOT REQUIRED**, and defaults to `true`.
 It specifies whether the regular expression should be matched as case-sensitive.
 
 > **WARNING:** If the `i` flag is set on the regular expression, it overrides the `caseSensitive` option.
+
+---
+
+## States
+
+The SyntaxColor parser groups rules into different states, which the parser goes through based on the rules specified.
+
+The parser always starts in the `"start"` state, so that state is where you should put your beginnng rules.
+
+Then, as the parser evaluates your rules, if it encounters a match and the `next` property is set, it goes to the state specified by the `next` property.
+
+---
+
+## Rule Set
+
+A rule set is a JavaScript array containing several rules.
+
+Here's the format for a rule set:
+``` javascript
+[
+    rule1,
+    rule2,
+    ...
+]
+```
+
+---
+
+## Complete Rule Set
+
+A complete rule set contains several states and their rule sets.
+
+Here's the format for a complete rule set:
+``` javascript
+{
+    state1: ruleSet1,
+    state2: ruleSet2,
+    ...
+}
+```
