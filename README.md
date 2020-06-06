@@ -22,4 +22,13 @@ If the `token` property is a string, the result matched by `regex` will be wrapp
 To add several classes, use class names seperated by `.`. Note that classes will have a prefix applied to them, so `abc` becomes `sc_abc`.
 
 ##### Array
-If the `token` property is an array, each group in the `regex` will have 
+If the `token` property is an array, each group in the `regex` will have the classes specified in the array added to it in order.
+
+For example, in
+```javascript
+{
+  regex: /(hello)( world)/`,
+  token: ["word","long"]
+}
+```
+, the text `"I said hello world."` would output `"I said <span class='sc_word'>hello</span><span class='sc_long'> world</span>"`.
