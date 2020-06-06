@@ -112,11 +112,23 @@ It returns the HTML string with the classes applied.
 
 ## Exposed Functions
 
-### `escapeText(text)`
+### `escapeText(text)` = escaped HTML
 The `escapeText()` function escapes common HTML characters (`<>'"&`) into their &xxx; forms.
 
-### `escapeChar(text)`
+### `escapeChar(text)` = escaped character / non-escaped text
 The `escapeChar()` function escapes the text provided IF it is a single character; otherwise it returns the text.
 
-### `parseRules(rules)`
+### `parseRules(rules)` = parsed rules
 The `parseRules()` function converts the rules provided into a more machine-readable format. It converts all strings to regular expressions, converts aliases to their original forms, removes flags from regular expressions, and adds the `i` flag if set.
+
+### `addClasses(match,token,prefix)` = &lt;span&gt;match&lt;/span&gt;
+The `addClasses()` function wraps the match provided in a `<span>` tag with classes based on `token`, prefixed with `prefix`.
+
+### `compress(html)` = compressed text
+The `compress()` function compresses `<span>`s like so: `<span class="abc">a</span><span class="abc">b</span><span class="abc">c</span>` --> `<span class="abc">abc</span>`.
+
+### `changeSpaces(html)` = replaced text
+The `changeSpaces()` function replaces a series of at least two spaces with a string of `"&zwnj;&nbsp;"`s.
+
+### `highlightLine(line,allRules,state,prefix)` = {html: highlighted html,state: current state}
+The `highlightLine()` function highlights a single line of code based on the current state.
