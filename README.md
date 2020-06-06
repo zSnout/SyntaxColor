@@ -31,4 +31,11 @@ For example, in
   token: ["word","long"]
 }
 ```
-, the text `"I said hello world."` would output `"I said <span class='sc_word'>hello</span><span class='sc_long'> world</span>"`.
+, the text `"I said hello world."` would output `"I said <span class='zsnout_word'>hello</span><span class='zsnout_long'> world</span>"`.
+
+> :warning: Make sure that you have as many groups in your `regex` as there are elements in the list, otherwise you may get unexpected results.
+
+> :warning: You should make sure that every character in your `regex` is contained in a group, and that groups are non-nested, otherwise you may get unexpected results.
+
+##### Function
+If the `token` property is a function, SyntaxColor will evaluate the function, passing the matched result.
