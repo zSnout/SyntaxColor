@@ -19,4 +19,7 @@ The `token` property can contain either a string, an array, or a function.
 
 ##### String
 If the `token` property is a string, the result matched by `regex` will be wrapped in a `<span>` with a class of `token`.
-To add several classes, use class names seperated by `.`.
+To add several classes, use class names seperated by `.`. Note that classes will have a prefix applied to them, so `abc` becomes `sc_abc`.
+
+##### Array
+If the `token` property is an array, each group in the `regex` will have 
