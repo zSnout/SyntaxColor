@@ -155,7 +155,7 @@ window.highlightLine = function(line,allRules,state,prefix) {
 };
 
 window.highlight = function(text,rules,prefix) {
-	prefix = prefix || "sc_";
+	prefix = prefix || "zsnout_";
 	
 	text = text.split("\n");
 	var html = [];
