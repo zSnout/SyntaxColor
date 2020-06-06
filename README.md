@@ -35,6 +35,7 @@ SyntaxColor will then take the returned result and evaluate it in the manner abo
 #### `next` (alias: `nextState`)
 The `next` property is **NOT REQUIRED**, and defaults to the current state.
 It specifies the next state for the parser to go to. More on states later.
+
 #### `caseSensitive`
 The `caseSensitive` property is **NOT REQUIRED**, and defaults to `true`.
 It specifies whether the regular expression should be matched as case-sensitive.
@@ -96,3 +97,26 @@ Here's the format for a complete rule set:
     ...
 }
 ```
+
+---
+
+## `highlight(text,rules[,prefix = "zsnout_"])`
+
+The `highlight()` function highlights the `text` given with the `rules` given. If `rules` is an array, it is converted to `{start: rules}`.
+
+It also applies a prefix of `prefix` to each class, so as not to get mixed up with other classes. The `prefix` option defaults to `"zsnout_"`.
+
+It returns the HTML string with the classes applied.
+
+---
+
+## Exposed Functions
+
+### `escapeText(text)`
+The `escapeText()` function escapes common HTML characters (`<>'"&`) into their &xxx; forms.
+
+### `escapeChar(text)`
+The `escapeChar()` function escapes the text provided IF it is a single character; otherwise it returns the text.
+
+### `parseRules(rules)`
+The `parseRules()` function converts the rules provided into a more machine-readable format. It converts all strings to regular expressions, converts aliases to their original forms, removes flags from regular expressions, and adds the `i` flag if set.
