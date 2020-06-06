@@ -38,4 +38,7 @@ For example, in
 > **WARNING:** You should make sure that every character in your `regex` is contained in a group, and that groups are non-nested, otherwise you may get unexpected results.
 
 ##### Function
-If the `token` property is a function, SyntaxColor will evaluate the function, passing the matched result.
+If the `token` property is a function, SyntaxColor will evaluate the function, passing the matched result in the way the browser returned it.
+SyntaxColor will then take the returned result and evaluate it in the manner above.
+
+#### `next`
